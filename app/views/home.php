@@ -25,9 +25,9 @@
     </nav>
 
     <main>
-        <h2>Tabungan Baru-Baru Ini</h2>
+        <h2>Recent Savings</h2>
         <?php foreach($tabungs as $tabungan): ?>
-            <div class="donation-card">
+            <div class="tabungan-card">
                 <h3><?php echo htmlspecialchars($tabungan['name']); ?></h3>
                 <p>Amount: Rp<?php echo number_format($tabungan['amount']); ?></p>
                 <p>Message: <?php echo htmlspecialchars($tabungan['message']); ?></p>
