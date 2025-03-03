@@ -14,7 +14,7 @@ class TabunganController {
         if(!isset($_SESSION['user_id'])) {
             header('Location: login');
             exit();
-        }
+        } //cek apakah user sudah login, kalo belum diarahkan ke halaman login
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
             $amount = $_POST['amount'];
@@ -23,7 +23,7 @@ class TabunganController {
 
             if($this->tabunganModel->create($user_id, $amount, $message)) {
                 header('Location: home');
-                exit();
+                exit(); //menyimoan data tabungan, kalau berhasil diarahkan ke home
             }
         }
 

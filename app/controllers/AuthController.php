@@ -12,7 +12,7 @@ class AuthController {
 
     public function login() {
         require_once 'app/helpers/AuthMiddleware.php';
-        AuthMiddleware::isGuest();
+        AuthMiddleware::isGuest(); //mencegah pengguna yang sudah login masuk kembali
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
             $email = $_POST['email'];
@@ -26,6 +26,7 @@ class AuthController {
         require_once 'app/views/login.php';
     }
 
+    //mencegah user yang sudah login daftar lagi
     public function register() {
         require_once 'app/helpers/AuthMiddleware.php';
         AuthMiddleware::isGuest();
@@ -51,7 +52,7 @@ class AuthController {
         $stmt = $this->db->prepare($query);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result['count'] === 0;
+        return $result['count'] === 0; //jika jumlahnya 0, maka user pertama itu admin
     }
 
     public function logout() {
