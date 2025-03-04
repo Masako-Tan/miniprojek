@@ -2,7 +2,47 @@
 <html>
 <head>
     <title>Login - Mini Tabungan</title>
-    <link rel="stylesheet" href="public/css/style.css">
+    <!-- <link rel="stylesheet" href="public/css/style.css"> -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        form div {
+            display: flex;
+            flex-direction: column;
+        }
+        body{
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            
+        }
+        button:hover {
+            background: #444;
+        }
+
+        main {
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        nav {
+            background: #333;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
 </head>
 <body>
     <nav>
