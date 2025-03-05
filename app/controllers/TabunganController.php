@@ -10,20 +10,19 @@ class TabunganController {
         $this->tabunganModel = new Tabungan($this->db);
     }
 
-    public function index() {
-        if(!isset($_SESSION['user_id'])) {
-            header('Location: login');
-            exit();
-        } //cek apakah user sudah login, kalo belum diarahkan ke halaman login
-
+    public function index(){
+        require_once 'app/helpers/AuthMiddleware.php';
+        $userId = AuthMiddleware::getuserId();
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
             $amount = $_POST['amount'];
             $message = $_POST['message'];
-            $user_id = $_SESSION['user_id'];
+            
 
-            if($this->tabunganModel->create($user_id, $amount, $message)) {
-                header('Location: home');
-                exit(); //menyimoan data tabungan, kalau berhasil diarahkan ke home
+        //  $userId = $_SESSION['user_id'];
+         if ($this->tabunganModel->create($userId, $amount, $message)) { // FIX: pakai $userId
+            header('Location: home');
+            exit();
+
             }
         }
 

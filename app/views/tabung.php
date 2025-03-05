@@ -2,26 +2,26 @@
 <html>
 <head>
     <title>Tabung - Mini Tabungan</title>
-    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" href="public/style.css">
 </head>
-<body>
-    <nav>
+<body class ="tabung-body">
+    <nav class ="tabung-nav">
         <h1>Mini Tabungan</h1>
-        <a href="home">Home</a>
+        <a class="login-home"  href="home">Home</a>
     </nav>
 
-    <main>
+    <main class="tabung-main">
         <h2>Start Saving</h2>
         <form method="POST" action="tabung">
             <div>
                 <label>Amount (Rp)</label>
-                <input type="number" name="amount" required>
+                <input class = "tabung-input" type="number" name="amount" required>
             </div>
             <div>
                 <label>Message</label>
-                <textarea name="message" required></textarea>
+                <textarea class = "tabung-textarea" name="message" required></textarea>
             </div>
-            <button type="submit">Save</button>
+            <button class = "tabung-submit" type="submit">Save</button>
         </form>
     </main>
 </body>

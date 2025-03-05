@@ -22,10 +22,50 @@ class Tabungan {
     }
 
     public function getAll() {
+        $userId = $_SESSION['user_id'];
+        $isAdmin = $_SESSION['user_role'] === 'admin';
+
+        if ($isAdmin) {
         $query = "SELECT d.*, u.name FROM " . $this->table . " d
                   JOIN users u ON d.user_id = u.id
                   ORDER BY d.created_at DESC";
         $stmt = $this->conn->prepare($query);
+        }
+
+        else {
+            $query = "SELECT d.*, u.name FROM " . $this->table . " d
+                      JOIN users u ON d.user_id = u.id
+                      WHERE d.user_id = :user_id
+                      ORDER BY d.created_at DESC";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+        }
+
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $userId = $_SESSION['user_id'];
+        
+        //admin dan user hanya bisa melihat tabungan mereka sendiri
+        $query = "SELECT d.*, u.name FROM " . $this->table . " d
+                      JOIN users u ON d.user_id = u.id
+                      WHERE d.user_id = :user_id
+                      ORDER BY d.created_at DESC";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getByUserId($userId) {
+        $query = "SELECT d.*, u.name FROM " . $this->table . " d
+                      JOIN users u ON d.user_id = u.id
+                      WHERE d.user_id = :user_id
+                      ORDER BY d.created_at DESC";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+              
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

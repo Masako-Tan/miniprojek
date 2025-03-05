@@ -36,7 +36,7 @@ class AuthController {
             $email = $_POST['email'];
             $password = $_POST['password'];
             
-            // First user will be admin, rest will be regular users
+            // user pertama itu admin, selanjutnya user biasa
             $role = $this->isFirstUser() ? 'admin' : 'user';
 
             if($this->userModel->register($name, $email, $password, $role)) {
